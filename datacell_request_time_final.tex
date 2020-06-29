@@ -146,7 +146,7 @@
     \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
     % Document parameters
     % Document title
-    \title{datacell\_request\_time\_v2}
+    \title{datacell\_request\_time\_final}
     
     
     
@@ -370,10 +370,15 @@
     
 
     
-    \section{Navigating this notebook}\label{navigating-this-notebook}
+    \section{Navigating This Notebook}\label{navigating-this-notebook}
 
-    A markdown cells in \textbf{bold text and default size} indicate that
-you should execute the cell below it, ex.:
+    The following text stylings applied to cell descriptions indicate what
+you should do with the corresponding code cells.
+
+Execute Cell:
+
+Markdown cells in \textbf{bold text and default size} indicate that you
+should execute the cell below it. EXAMPLE:
 
 ~~~~~~\textbf{Rerun this cell with a new date range/s to RESET DATA:}
 
@@ -383,21 +388,22 @@ above.
 
 The notebook will be broken up into \textbf{definitions cells} and
 \textbf{execution cells}. Definiton cells can be run once at the start
-of each new kernel session, execution cells must be reloaded every time
+of each new kernel session, execution cells must be reloaded each time
 you want to reset a dataframe or a figure. Execution cells will be
 indicated by the above notation.
 
     \section{Initial Setup}\label{initial-setup}
 
-    Eugene: you can experiemnt with turning matplotlib inline on and off, it
-doesn't seem to have an effect as I think Seaborn is automatically
-running show() on each of the plots. But truning it on won't hurt.
+    \emph{Developer NOTE:} you can experiment with turning matplotlib inline
+on and off, it doesn't seem to have an effect as I think Seaborn is
+automatically running show() on each of the plots. But turning it on
+won't hurt.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{58}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} Turn on inline display of plots in the notebook. (We should work on a more}
-\PY{c+c1}{\PYZsh{} portable solution such as saving th plots to files down the road.)}
+\PY{c+c1}{\PYZsh{} portable solution such as saving the plots to files down the road.)}
 \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
 \end{Verbatim}
 \end{tcolorbox}
@@ -452,13 +458,13 @@ DB}\label{create-a-function-to-load-requests-data-for-specific-years-from-sql-db
 
     Filter years to select data:
 
-    Eugene: Robby helped me think of a way to possibly improve performance
-accross the entire notebook by first importing the data from the SQL DB
-into "pure python" (instead of directly into a pandas dataframe) using
-pyodbc and putting the data first in a numpy matrix (or possibly JSON
-obj), then using the numpy matrix to create pandas dataframes later as
-they are needed. This would help because Numpy is written in C and it
-highly optimized for large amounts of data.
+    \emph{Developer NOTE:} performance may be improved accross the entire
+notebook by first importing the data from the SQL DB into "pure python"
+(instead of directly into a pandas dataframe) using pyodbc and putting
+the data first in a numpy matrix (or possibly JSON obj), then using the
+numpy matrix to create pandas dataframes later as they are needed. This
+would help because Numpy is written in C and it highly optimized for
+large amounts of data.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{13}{\boxspacing}
@@ -584,7 +590,7 @@ data:}
 \end{Verbatim}
 \end{tcolorbox}
 
-    \paragraph{First look at requests DF}\label{first-look-at-requests-df}
+    \paragraph{First look at requests DF:}\label{first-look-at-requests-df}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{17}{\boxspacing}
@@ -606,6 +612,8 @@ StartTimeStamp
 \end{Verbatim}
 \end{tcolorbox}
         
+    \textbf{Get some basic facts about the data:}
+
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{29}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
@@ -628,6 +636,8 @@ max    1.343400e+04
 \end{Verbatim}
 \end{tcolorbox}
         
+    \textbf{Analize NANs in data:}
+
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{34}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
@@ -841,9 +851,9 @@ titles}\label{year-title-formatter-for-subplots-axes-titles}
     \subsection{DataFrame generator
 functions:}\label{dataframe-generator-functions}
 
-    The following functions generate new DFs either based on filtering
-another DF being passed in, or create a new DF using
-get\_df\_requests\_with\_date\_cols\_from\_db() and then filtering the
+    The following functions generate new DFs by either filtering another DF
+being passed in or creating a new DF using
+get\_df\_requests\_with\_date\_cols\_from\_db(), then filtering the
 resulting dataframe further.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
@@ -914,11 +924,11 @@ resulting dataframe further.
 data will be constructed. There are subsections which are numbered based
 on the data story being told.
 
-\paragraph{Section numbering:}\label{section-numbering}
+\subsubsection{Section numbering:}\label{section-numbering}
 
 Format of titles: \textbf{\#.\#.\# - Title}
 
-\textbf{First section (\#.x.x)} - The first number in section titles
+\textbf{Analysis Level (\#.x.x)} - The first number in section titles
 (\#.x.x) defines the overarching type of analysis being done throughout
 the whole section, e.g. analysis over 1 year of data, and will be
 indicated in a title first by markdown heading 2 (h2). For example,
@@ -927,9 +937,9 @@ subsection 1. contains multiple different analyses of request data over
 will be defined by a function prep\_base\_data\_\#() in first
 subsections.
 
-\textbf{Second subsection (x.\#.x)} - The second subsection (x.\#.x) in
+\textbf{Dataframe Level (x.\#.x)} - The second subsection (x.\#.x) in
 the title indicates the DataFrame-level subsection. This means that each
-distinct subsection at this level (e.g. 1.1, 1.2 or 3.4, etc.) has it's
+distinct subsection at this level (e.g. 1.1, 1.2, 3.4, etc.) has it's
 own DataFrame defined for it, and the analyses/visualizations within
 this subsection are all being done on that DataFrame. The DataFrames for
 these subsections will be created by a function named
@@ -937,14 +947,16 @@ some\_data\_prep\_description\_\#\_\#() for each subsection, which will
 be defined and called right after the title of the subsection. The
 titles for second subsections will be in markdown header 4 (h4).
 
-\textbf{Third subsection (x.x.\#)} - The third and final subsection
-defines an individual figure/plot. All third subsections will belong to
-a second subsection that defines the DataFrame that the figure uses.
-Each figure/plot will have a "Figure definitions" section right before
-the figure source code where you can modify variables that effect the
-look or execution of the figure, and they will be labeled
+\textbf{Figure Level (x.x.\#)} - The third and final subsection defines
+an individual figure/plot. All third subsections will belong to a second
+subsection that defines the DataFrame that the figure uses. Each
+figure/plot will have a "Figure definitions" section right before the
+figure source code where you can modify variables that effect the look
+or execution of the figure, and they will be labeled
 figure\_defintion\_variable\_\#\emph{\#}\#. The titles for third
 subsections will be in markdown header 5 (h5).
+
+\subsubsection{Notes}\label{notes}
 
 \paragraph{"prep\_data\_\#()" and similar data prep functions used in
 these
@@ -953,15 +965,14 @@ sections:}\label{prep_data_-and-similar-data-prep-functions-used-in-these-sectio
 Most of the data prep functions used herein (\#.x.x) are just wrapper
 functions that call get\_df\_requests\_with\_date\_cols\_from\_db() for
 a specified year period, or one of the month-filtering get\_df functions
-defined above, and then give the user the choice to exclude weekends or
-not. They are used as an information-hiding mechanism, and to put
+defined above. They then give the user the choice to exclude weekends or
+not. They are used as an information-hiding mechanism, and to keep
 everything in once place. Some of these data prep functions, however,
-also do aggregation and other pandas DataFrame manipulation and then
-return a new modified DF. These functions will be more interesting to
-read.
+also do aggregation and other DataFrame manipulation and then return a
+new modified DF. These functions will be more interesting to read.
 
-\paragraph{"clear\_df\_from\_mem\_\#\_\#\_\#" variable
-note:}\label{clear_df_from_mem___-variable-note}
+\paragraph{"clear\_df\_from\_mem\_\#\_\#\_\#"
+variable:}\label{clear_df_from_mem___-variable}
 
 This variable is in the "Figure definitions" section for each individual
 figure. It is there to save memory by deleting the DataFrame that is
@@ -974,14 +985,8 @@ variables, you should set clear\_df\_from\_mem\_\#\_\#\_\# to
 don't have to constantly go back to the data prep function and reload
 the DataFrame every time you make a change to the figure.
 
-    \paragraph{Other notes for Eugene:}\label{other-notes-for-eugene}
-
-I still need to add more user-control variables to the "Figure
-definitions" sections on all of these plots, but I'm sure you can figure
-out how to change the matplotlib code.
-
-There are still a few bugs with some of the plots that will have
-comments.
+    \emph{Developer NOTE:} More user-control variables could be added to the
+"Figure definitions" sections on all of these plots.
 
     \subsection{1 - Data over 1 year, by
 month}\label{data-over-1-year-by-month}
@@ -998,9 +1003,10 @@ year}\label{mean-estimation-of-all-requests-1-year}
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{112}{\boxspacing}
+\prompt{In}{incolor}{2}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{c+c1}{\PYZsh{} Make labels readable. Exclude weekends. Exclude holidays? Make if very obvious that we are excluding thesedays, make this reversible.}
+\PY{c+c1}{\PYZsh{} Ideas/notes:}
+    \PY{c+c1}{\PYZsh{} Exclude weekends. Exclude holidays? Make if very obvious that we are excluding thesedays, make this reversible.}
 \end{Verbatim}
 \end{tcolorbox}
 
@@ -1117,7 +1123,7 @@ month}\label{plot-of-mean-estimation-of-all-request-durations-over-1-year-with-s
 \end{tcolorbox}
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{datacell_request_time_v2_files/datacell_request_time_v2_62_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{datacell_request_time_final_files/datacell_request_time_final_64_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -1249,16 +1255,16 @@ data}\label{plot-of-daily-mean-and-max-request-duration-vs.-request-countload-su
 \end{tcolorbox}
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{datacell_request_time_v2_files/datacell_request_time_v2_70_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{datacell_request_time_final_files/datacell_request_time_final_72_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
     As opposed to \textbf{this}:
 
-    The following was the "old way" that I tried to solve the problem of
-making a separate subplot for each month of data, where I had broken it
-up into 12 dataframes. This is the wrong solution because it does a lot
-of unecessary data manipulation in pandas. I then discovered Seaborn's
+    The following was my initial attempt to solve the problem of making a
+separate subplot for each month of data, where I had broken the
+DataFrame up into 12 seperate DataFrames. This, however, requires much
+unecessary data manipulation in pandas. I then discovered Seaborn's
 FacetGrid (unsed to make the above plot), which is specifically designed
 to take a DataFrame and use the values in one of it's columns to break
 up the data into subplots.
@@ -1367,19 +1373,19 @@ StartTimeStamp
 1 month of
 data}\label{plot-of-daily-mean-estimation-of-request-duration-1-month-of-data}
 
-    Eugene: here, I changed the line on the plot that showed all requests
-with the estimator=None variable from a sns.lineplot() to an
-sns.scatterplot(). The line version was supposed to show all requests by
-day but the data just looked like a soundwave, all over the place...
-this was because it is grouping all the request data by day, since I set
-the x-axis to 'Day', then drawing a line through all the observations.
-And since there are many observations each day, ranging from 0 seconds
-to 100s of seconds or more, it was drawing a line from zero up to very
-high on the y axis \emph{each day} and it looked very odd. Showing the
-individual dots for each observation helps see why it looks like this,
-and now we get an idea of how many observations are occuring different
-times for each day. You can change the scatterplot back to a line by
-replacing "sns.scatterplot" with "sns.lineplot".
+    \emph{Developer NOTE:} here, I changed the line on the plot that showed
+all requests with the estimator=None variable from a sns.lineplot() to
+an sns.scatterplot(). The line version was supposed to show all requests
+by day but the data just looked like a soundwave, all over the place...
+this was because it was grouping all the request data by day, since I
+set the x-axis to 'Day', then drawing a line through all the
+observations. Because there are many observations each day, ranging from
+0 seconds to 100s of seconds or more, it was drawing a line from zero up
+to very high on the y axis \emph{each day} and it looked very odd.
+Showing the individual dots for each observation helps see why it looks
+like this, and now we get an idea of how many observations are occuring
+different times for each day. You can change the scatterplot back to a
+line by replacing "sns.scatterplot" with "sns.lineplot".
 
 We could also put the scatterplot on the year graphs above, but it would
 probably look messy and just take longer to run.
@@ -1434,7 +1440,7 @@ probably look messy and just take longer to run.
 \end{tcolorbox}
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{datacell_request_time_v2_files/datacell_request_time_v2_86_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{datacell_request_time_final_files/datacell_request_time_final_88_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -1482,7 +1488,7 @@ day}\label{distribution-of-mean-request-time-per-day}
 \end{tcolorbox}
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{datacell_request_time_v2_files/datacell_request_time_v2_90_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{datacell_request_time_final_files/datacell_request_time_final_92_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -1617,16 +1623,17 @@ month}\label{plot-of-daily-mean-max-and-min-of-req.-durations-and-req.-load-for-
 \end{tcolorbox}
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{datacell_request_time_v2_files/datacell_request_time_v2_98_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{datacell_request_time_final_files/datacell_request_time_final_100_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
     \subsection{3. Analyses of request durations and load over 3
 months}\label{analyses-of-request-durations-and-load-over-3-months}
 
-    Consider eliminating months that we don't need in sql...
+    \emph{Developer NOTE:} Consider eliminating months that we don't need
+directly in sql...
 
-    Data prep:
+    DataFrame prep:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{243}{\boxspacing}
@@ -1794,7 +1801,7 @@ week}\label{lineplot-of-mean-request-time-vs.-request-loadcount-for-each-week}
 \end{tcolorbox}
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{datacell_request_time_v2_files/datacell_request_time_v2_113_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{datacell_request_time_final_files/datacell_request_time_final_115_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -1861,7 +1868,7 @@ months}\label{lineplot-of-all-weekly-stats-over-3-months}
 \end{tcolorbox}
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{datacell_request_time_v2_files/datacell_request_time_v2_117_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{datacell_request_time_final_files/datacell_request_time_final_119_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -1983,15 +1990,15 @@ data}\label{swarmplot-of-weekly-mean-max-and-min-req.-durations-and-req.-load-3-
 \end{tcolorbox}
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{datacell_request_time_v2_files/datacell_request_time_v2_128_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{datacell_request_time_final_files/datacell_request_time_final_130_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
     \paragraph{3.3 - DAILY stats over 3
 months}\label{daily-stats-over-3-months}
 
-    Fine-tuning done... TO DO: -Apply month-naming function and add Axes
-titles.
+    \emph{Developer NOTE:} Fine-tuning done... TO DO: -Apply month-naming
+function and add Axes titles.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{320}{\boxspacing}
@@ -2045,8 +2052,8 @@ titles.
 \end{Verbatim}
 \end{tcolorbox}
 
-    Was writing this to debug the problem with there being gaps in the mean
-estimator range on the lineplot for plot 3.3.1:
+    \emph{Developer NOTE:} Was writing this to debug the problem with there
+being gaps in the mean estimator range on the lineplot for plot 3.3.1:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{318}{\boxspacing}
@@ -2098,18 +2105,18 @@ estimator range on the lineplot for plot 3.3.1:
     \subparagraph{3.3.1 - Daily stats over 3-months, in single
 plot}\label{daily-stats-over-3-months-in-single-plot}
 
-    Eugene: This graph was producing some strange output where it would show
-a standard deviation from the mean but only for discrete ranges of
-x-values, then the std. dev graphic would not show up, then show again
-depending on the x-value. I figured out that because I was plotting the
-'Day' column on the x-axis, it was plotting each unique DAY value,
-irrespective of what month/year that day was in. So instead, I reindexed
-the DataFrame so that there was a unique integer for each observation,
-then used this index as the x-value for the plot. This also fixed the
-problem I had with the Day\_Label not matching the the day, for obvious
-reasons. The graph was just bucketing every observation on day "3", for
-example, into one x-point, which is why we had standard devs. only
-sometimes.
+    \emph{Developer NOTE:} This graph was producing some strange output
+where it would show a standard deviation from the mean but only for
+discrete ranges of x-values, then the std. dev graphic would not show
+up, then show again depending on the x-value. I figured out that because
+I was plotting the 'Day' column on the x-axis, it was plotting each
+unique DAY value, irrespective of what month/year that day was in. So
+instead, I reindexed the DataFrame so that there was a unique integer
+for each observation, then used this index as the x-value for the plot.
+This also fixed the problem I had with the Day\_Label not matching the
+the day, for obvious reasons. The graph was just bucketing every
+observation on day "3", for example, into one x-point, which is why we
+had standard devs. only sometimes.
 
     \textbf{Alter figure definitions:}
 
@@ -2180,7 +2187,7 @@ sometimes.
 \end{tcolorbox}
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{datacell_request_time_v2_files/datacell_request_time_v2_142_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{datacell_request_time_final_files/datacell_request_time_final_144_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -2253,107 +2260,19 @@ month}\label{daily-stats-over-3-months-with-plot-for-each-month}
 \end{tcolorbox}
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{datacell_request_time_v2_files/datacell_request_time_v2_146_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{datacell_request_time_final_files/datacell_request_time_final_148_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
-    \paragraph{For swarmplot (buggy)}\label{for-swarmplot-buggy}
-
-    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{ }{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{longform\PYZus{}dur\PYZus{}stats\PYZus{}3\PYZus{}mon\PYZus{}by\PYZus{}day} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{melt}\PY{p}{(}\PY{n}{dur\PYZus{}stats\PYZus{}3\PYZus{}mon\PYZus{}by\PYZus{}day}\PY{p}{,} \PY{n}{id\PYZus{}vars}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Day}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{value\PYZus{}vars}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Min\PYZus{}Duration}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Max\PYZus{}Duration}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Mean\PYZus{}Duration}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Count\PYZus{}Durations}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{var\PYZus{}name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dur\PYZus{}Stat\PYZus{}Type}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{value\PYZus{}name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dur\PYZus{}Stat\PYZus{}Value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-\PY{c+c1}{\PYZsh{} longform\PYZus{}dur\PYZus{}stats\PYZus{}3\PYZus{}mon\PYZus{}by\PYZus{}day.set\PYZus{}index(keys=\PYZsq{}Day\PYZsq{}, inplace=True) \PYZsh{} duplicate keys OK!}
-
-\PY{c+c1}{\PYZsh{} Get Date and Weekday from hist\PYZus{}3\PYZus{}mon:}
-\PY{c+c1}{\PYZsh{} Is there a better way to get the time stamp?}
-\PY{c+c1}{\PYZsh{} hist\PYZus{}3\PYZus{}mon\PYZus{}day\PYZus{}index = history\PYZus{}3\PYZus{}mon.set\PYZus{}index(keys=\PYZsq{}Day\PYZsq{})}
-\PY{c+c1}{\PYZsh{} history\PYZus{}3\PYZus{}mon}
-\PY{c+c1}{\PYZsh{} hist\PYZus{}3\PYZus{}mon\PYZus{}day\PYZus{}index = hist\PYZus{}3\PYZus{}mon\PYZus{}day\PYZus{}index.groupby(\PYZsq{}Day\PYZsq{}).max()}
-\PY{c+c1}{\PYZsh{} hist\PYZus{}3\PYZus{}mon\PYZus{}day\PYZus{}index[\PYZsq{}StartTimeStamp\PYZsq{}] = hist\PYZus{}3\PYZus{}mon\PYZus{}day\PYZus{}index[\PYZsq{}StartTimeStamp\PYZsq{}].astype(str).str.split(\PYZsq{} \PYZsq{}, expand=True)[0]}
-\PY{c+c1}{\PYZsh{} hist\PYZus{}3\PYZus{}mon\PYZus{}day\PYZus{}index = hist\PYZus{}3\PYZus{}mon\PYZus{}day\PYZus{}index[[\PYZsq{}StartTimeStamp\PYZsq{}, \PYZsq{}Weekday\PYZsq{}, \PYZsq{}Month\PYZsq{}]]}
-\PY{c+c1}{\PYZsh{} hist\PYZus{}3\PYZus{}mon\PYZus{}day\PYZus{}index.head()}
-\PY{c+c1}{\PYZsh{} \PYZsh{} longform\PYZus{}dur\PYZus{}stats\PYZus{}3\PYZus{}mon\PYZus{}by\PYZus{}day}
-\end{Verbatim}
-\end{tcolorbox}
-
-    \subparagraph{Put data from above into it's own DF for
-swarmplot}\label{put-data-from-above-into-its-own-df-for-swarmplot}
-
-    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{170}{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{longform\PYZus{}dur\PYZus{}stats\PYZus{}3\PYZus{}mon\PYZus{}by\PYZus{}day} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{merge}\PY{p}{(}\PY{n}{longform\PYZus{}dur\PYZus{}stats\PYZus{}3\PYZus{}mon\PYZus{}by\PYZus{}day}\PY{p}{,} \PY{n}{hist\PYZus{}3\PYZus{}mon\PYZus{}day\PYZus{}index}\PY{p}{,} \PY{n}{how}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{on}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Day}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-\end{Verbatim}
-\end{tcolorbox}
-
-    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{ }{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{longform\PYZus{}dur\PYZus{}stats\PYZus{}3\PYZus{}mon\PYZus{}by\PYZus{}day}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Day\PYZus{}Label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{longform\PYZus{}dur\PYZus{}stats\PYZus{}3\PYZus{}mon\PYZus{}by\PYZus{}day}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{StartTimeStamp}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{str}\PY{p}{)} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ }\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n}{longform\PYZus{}dur\PYZus{}stats\PYZus{}3\PYZus{}mon\PYZus{}by\PYZus{}day}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Weekday}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{str}\PY{p}{)}
-\PY{n}{longform\PYZus{}dur\PYZus{}stats\PYZus{}3\PYZus{}mon\PYZus{}by\PYZus{}day}\PY{o}{.}\PY{n}{set\PYZus{}index}\PY{p}{(}\PY{n}{keys}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Day}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
-\PY{n}{longform\PYZus{}dur\PYZus{}stats\PYZus{}3\PYZus{}mon\PYZus{}by\PYZus{}day}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{StartTimeStamp}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Weekday}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
-\end{Verbatim}
-\end{tcolorbox}
-
-    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{ }{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{longform\PYZus{}dur\PYZus{}stats\PYZus{}3\PYZus{}mon\PYZus{}by\PYZus{}day}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
-\end{Verbatim}
-\end{tcolorbox}
-
-    \subparagraph{Swarmplot of stats by
-day}\label{swarmplot-of-stats-by-day}
-
-    Break up into 3 months..?
-
-    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{172}{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-\PY{k+kn}{import} \PY{n+nn}{seaborn} \PY{k}{as} \PY{n+nn}{sns}
-\end{Verbatim}
-\end{tcolorbox}
-
-    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{ }{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{sns}\PY{o}{.}\PY{n}{set\PYZus{}style}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{darkgrid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-
-\PY{n}{fig}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
-
-\PY{n}{colors} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{color\PYZus{}palette}\PY{p}{(}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsh{}89D328}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsh{}D30702}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsh{}1299E2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsh{}1F2C28}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}  \PY{c+c1}{\PYZsh{} MIN, MAX, MEAN, COUNT}
-
-\PY{n}{sns}\PY{o}{.}\PY{n}{swarmplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{longform\PYZus{}dur\PYZus{}stats\PYZus{}3\PYZus{}mon\PYZus{}by\PYZus{}day}\PY{o}{.}\PY{n}{index}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dur\PYZus{}Stat\PYZus{}Value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{hue}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dur\PYZus{}Stat\PYZus{}Type}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{data}\PY{o}{=}\PY{n}{longform\PYZus{}dur\PYZus{}stats\PYZus{}3\PYZus{}mon\PYZus{}by\PYZus{}day}\PY{p}{,} \PY{n}{dodge}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{edgecolor}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{4}\PY{p}{,} \PY{n}{palette}\PY{o}{=}\PY{n}{colors}\PY{p}{,} \PY{n}{s}\PY{o}{=}\PY{l+m+mi}{7}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax}\PY{p}{)}
-\PY{c+c1}{\PYZsh{} sns.regplot(x=\PYZsq{}Day\PYZsq{}, y=\PYZsq{}Mean\PYZus{}Duration\PYZsq{}, data=dur\PYZus{}stats\PYZus{}3\PYZus{}mon\PYZus{}by\PYZus{}day, color=\PYZsq{}\PYZsh{}1299E2\PYZsq{}, scatter\PYZus{}kws=\PYZob{}\PYZsq{}s\PYZsq{}: 0\PYZcb{}, ax=ax)}
-
-\PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}yscale}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{symlog}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}  \PY{c+c1}{\PYZsh{} Retain zero values}
-\PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{n}{bottom}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mf}{0.25}\PY{p}{)}  \PY{c+c1}{\PYZsh{} 0 doesn\PYZsq{}t work... }
-
-\PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Request Duration Stats}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}
-\PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Day}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}
-\PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Min, Max, Mean, and Count of Request Durations by Week (3 mo.)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{center}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{25}\PY{p}{)}
-
-\PY{n}{ax}\PY{o}{.}\PY{n}{tick\PYZus{}params}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{both}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{which}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{major}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{labelsize}\PY{o}{=}\PY{l+m+mi}{15}\PY{p}{)}
-\PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xticklabels}\PY{p}{(}\PY{n}{longform\PYZus{}dur\PYZus{}stats\PYZus{}3\PYZus{}mon\PYZus{}by\PYZus{}day}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Day\PYZus{}Label}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
-
-\PY{n}{ax}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{borderpad}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{labelspacing}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{18}\PY{p}{)}
-\end{Verbatim}
-\end{tcolorbox}
-
     \subsection{4. Find relationships between min/max/mean/count of request
 durations per day with a
 "correlogram"}\label{find-relationships-between-minmaxmeancount-of-request-durations-per-day-with-a-correlogram}
 
-    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{95}{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-\PY{c+c1}{\PYZsh{} Add a function that pulls the data which allows the user to filter data IF WANTED (make a}
-\PY{c+c1}{\PYZsh{} default that pulls all historical data?).}
-\end{Verbatim}
-\end{tcolorbox}
+    \emph{Developer NOTE:} Add a function that pulls the data which allows
+the user to filter data IF WANTED (make a default that pulls all
+historical data?).
 
-    Drop excess fields we don't need here:
+    \emph{Developer NOTE:} Drop excess fields we don't need here:
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{85}{\boxspacing}
@@ -2401,7 +2320,7 @@ Day
 \end{tcolorbox}
         
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{datacell_request_time_v2_files/datacell_request_time_v2_162_1.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{datacell_request_time_final_files/datacell_request_time_final_154_1.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -2410,13 +2329,12 @@ Day
     \paragraph{5.1 - Total health history stats by
 month}\label{total-health-history-stats-by-month}
 
-    This section is under construction. My goal is to aggregate all the
-historical data by month in SQL and then make a figure with a
-subplot/Axes for each year and show all historical stats per month over
-the whole history of the DB.
+    \emph{Developer NOTE:} This section is under construction. The goal is
+to aggregate -all- the historical data by month in SQL then make a
+figure with a subplot/Axes for each year, showing all historical stats
+per month over the databases history.
 
-I just have to separate year and month from being in the same column in
-the DF...
+Separate year and month from being in the same column in the DF...
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{179}{\boxspacing}
@@ -2477,8 +2395,9 @@ the DF...
 \end{Verbatim}
 \end{tcolorbox}
         
-    Below is code that does something similar, dut in pandas. It will
-probably not be used. Running this currently may cause memory errors.
+    \emph{Developer NOTE:} Below is code that does something similar, but in
+pandas. It will probably not be used. Running this currently may cause
+memory errors.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{164}{\boxspacing}
@@ -2535,8 +2454,8 @@ probably not be used. Running this currently may cause memory errors.
 with subplots/Axes for each year, all
 data}\label{plot-of-all-historical-stats-aggregated-monthly-with-subplotsaxes-for-each-year-all-data}
 
-    This code will be used with the data loaded directly from SQL above,
-once bugs are fixed...
+    \emph{Developer NOTE:} This code will be used with the data loaded
+directly from SQL above, once bugs are fixed...
 
     \textbf{Figure definitions:}
 
@@ -2600,8 +2519,9 @@ once bugs are fixed...
     \paragraph{5.2 - Total health history stats by
 week}\label{total-health-history-stats-by-week}
 
-    The following code was also done using all historical data in a pandas
-DF, so it will not be used as it takes a ton of memory.
+    \emph{Developer NOTE:} The following code was also done using all
+historical data in a pandas DF, so it will not be used as it takes a ton
+of memory.
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{25}{\boxspacing}
@@ -2755,7 +2675,7 @@ code is buggy.
 \end{tcolorbox}
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{datacell_request_time_v2_files/datacell_request_time_v2_187_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{datacell_request_time_final_files/datacell_request_time_final_179_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
