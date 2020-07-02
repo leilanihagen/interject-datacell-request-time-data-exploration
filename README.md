@@ -14,6 +14,6 @@ Pandas was used to hold and filter data after importing the original data from S
 
 ## About Interject
 
-Interject is a data-solutions company that focuses on improving the productivity of their clients' businesses in the areas of reporting and accounting, data management, and other custom solutions. I worked as a member of the Interject student team from May 2019 until February 2020. Check out Interject's website at: gointerject.com.
+Interject is a data-solutions company that focuses on improving the productivity of their clients' businesses in the areas of reporting and accounting, data management, and other custom solutions. I worked as a member of the Interject student team from May 2019 until February 2020. Check out Interject's website at: https://gointerject.com/.
 
 This project was developed solely by me.
